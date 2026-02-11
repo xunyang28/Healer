@@ -1,0 +1,11 @@
+# version: '3.9'
+
+services:
+  app:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MESSAGE=Hello from Docker! 🎉
+    restart: unless-stopped
