@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
         </style>
       </head>
       <body>
-        <h1>🚀 ${message}. Hello I am Xun Yang Leong</h1>
+        <h1>🚀 Hello I am Xun Yang Leong </h1>
         <div class="info">
           Running on port <strong>${PORT}</strong><br>
           Environment: <strong>${process.env.NODE_ENV || 'development'}</strong>
