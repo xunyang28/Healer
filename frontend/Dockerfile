@@ -7,6 +7,7 @@ COPY package*.json ./
 RUN npm ci
 
 COPY src ./src
+COPY src/views ./views        # ← add this line
 
 # Stage 2: Production image (very small)
 FROM node:20-alpine
@@ -17,6 +18,7 @@ WORKDIR /app
 COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
+COPY --from=builder /app/views ./views     # ← add this line
 
 # Set non-root user (security best practice)
 USER node
