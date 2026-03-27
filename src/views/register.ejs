@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        background: #0f0f1a;
+        color: #e2e8f0;
+        text-align: center;
+        padding: 80px 20px;
+      }
+
+      h1 { font-size: 2.5rem; color: #7c6af7; margin-bottom: 12px; }
+      p  { font-size: 1.1rem; color: #94a3b8; margin-bottom: 32px; }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ── Fields ── */
+      .field {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 18px;
+        justify-content: center;
+      }
+
+      .field label {
+        width: 130px;
+        text-align: left;
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #64748b;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        flex-shrink: 1;
+      }
+
+      .field input {
+        width: 100%;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 18px;
+        color: #e2e8f0;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.2s, background 0.2s;
+      }
+
+      .field input:focus {
+        border-color: #7c6af7;
+        background: rgba(124, 106, 247, 0.05);
+      }
+
+      .field input::placeholder {
+        color: #334155;
+        flex: 1;
+      }
+
+      /* ── Submit Button ── */
+      .btn {
+        width: 100%;
+        padding: 14px;
+        background: #7c6af7;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.15s;
+        margin-top: 6px;
+        letter-spacing: 0.5px;
+      }
+
+      .btn:hover {
+        background: #6455e0;
+        transform: translateY(-1px);
+      }
+
+      .btn:disabled {
+        background: #1e293b;
+        color: #475569;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      /* ── Divider ── */
+      .divider {
+        text-align: center;
+        margin: 24px 0 0;
+        font-size: 0.85rem;
+        color: #334155;
+      }
+
+
+      a:hover { background: #6455e0; }
+    </style>
+  </head>
+  <body>
+
+    <!--Navigation Bar-->
+    <nav>
+        <a href="/" class="logo"> Healer </a>
+        <a href="/login" class="nav-login"> Already have an account? <span> Login </span> </a>
+    </nav>
+
+    <!-- Register Card -->
+    <div class="container">
+      <div class="card">
+        <h1>Create Account 🌱</h1>
+        <p>Start your healing journey today.</p>
+
+        <!-- Message Box -->
+        <div id="message"></div>
+
+        <!-- Form -->
+        <form id="register-form">
+
+          <div class="field">
+            <label>Username: </label> 
+            <input id="username" type="text" placeholder="e.g. healer123" />
+          </div>
+
+          <div class="field">
+            <label>E-mail: </label>
+            <input id="email" type="email" placeholder="you@example.com" />
+          </div>
+
+          <div class="field">
+            <label>Password: </label>
+            <input id="password" type="password" placeholder="passwords" />
+          </div>
+
+          <div class="field">
+            <label>Confirm Password: </label>
+            <input id="confirm-password" type="password" placeholder="Retype Passwords" />
+          </div>
+
+          <button class="btn-submit" type="submit" id="submit-btn">Create Account</button>
+        </form>
+
+        <div class="login-link">
+          Already have an account? <a href="/login">Login here</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="/src/routes/register.js"></script>
+
+  </body>
+</html>
