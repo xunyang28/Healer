@@ -1,6 +1,10 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import supabase from './config/supabase.js';
+
+const { data, error } = await supabase.from('profiles').select('*');
+console.log('Connected:', data, error);
 
 // ─── App Setup ────────────────────────────────────────────────
 const app = express();
