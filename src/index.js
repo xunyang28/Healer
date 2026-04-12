@@ -30,10 +30,12 @@ app.use(express.static(join(__dirname, 'public')));
 import homeRoute from './routes/home.js';
 import loginRoute from './routes/login.js';
 import registerRoute from './routes/register.js';
+import dashboardRoute from './routes/dashboard.js';
 
 app.use('/', homeRoute);         // handles → localhost/
-app.use('/auth', loginRoute);     // handles → localhost/auth/login
+app.use('/login', loginRoute);     // handles → localhost/auth/login
 app.use('/register',registerRoute);  //handles -> loaclhost/register
+app.use('/dashboard',dashboardRoute);  //handles -> loaclhost/dashboard
 
 // ─── 404 Handler ─────────────────────────────────────────────
 // If no route matches, show a 404 message

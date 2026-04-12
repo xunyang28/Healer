@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Healer - Login</title>
+    <style>
+      /* ── Reset ── */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      /* ── Base ── */
+      body {
+        font-family: system-ui, sans-serif;
+        background: #06080f;
+        color: #a8d8ff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── Navbar ── */
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+      }
+
+      .logo {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: #a8d8ff;
+        letter-spacing: 3px;
+        text-decoration: none;
+        text-shadow: 0 0 10px rgba(168, 216, 255, 0.8),
+                     0 0 20px rgba(168, 216, 255, 0.4);
+      }
+
+      .nav-right {
+        font-size: 0.9rem;
+        color: #a8d8ff;
+        text-decoration: none;
+        text-shadow: 0 0 8px rgba(168, 216, 255, 0.6);
+      }
+
+      .nav-right span {
+        color: #ffffff;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      }
+
+      /* ── Page Center ── */
+      .page {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+        min-height: calc(100vh - 65px);
+      }
+
+      /* ── Card ── */
+      .card {
+        background: #0a1628;
+        border: 3px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.2),
+                    0 0 40px rgba(168, 216, 255, 0.08);
+        /* border-radius: 24px; */
+        padding: 48px 40px;
+        width: 100%;
+        max-width: 480px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* ── Card Header ── */
+      .card-header {
+        text-align: center;
+        margin-bottom: 36px;
+      }
+
+      .card-header .icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+      }
+
+      .card-header h1 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin-bottom: 6px;
+        background: linear-gradient(135deg, #ffffff, #a8d8ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+        filter: drop-shadow(0 0 8px rgba(168, 216, 255, 0.6));
+      }
+
+      .card-header p {
+        font-size: 0.9rem;
+        color: #a8d8ff;
+        text-shadow: 0 0 8px rgba(168, 216, 255, 0.5);
+      }
+
+      /* ── Fields ── */
+      .field {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .field label {
+        width: 140px;
+        text-align: right;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: #a8d8ff;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        flex-shrink: 0;
+        white-space: nowrap;
+        text-shadow: 0 0 8px rgba(168, 216, 255, 0.7),
+                     0 0 16px rgba(168, 216, 255, 0.3);
+      }
+
+      .field input {
+        flex: 1;
+        max-width: 240px;
+        padding: 11px 16px;
+        background: #112244;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        color: #a8d8ff;
+        font-size: 0.9rem;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        text-shadow: 0 0 6px rgba(168, 216, 255, 0.5);
+      }
+
+      .field input:focus {
+        border-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 0 12px rgba(255, 255, 255, 0.2),
+                    0 0 24px rgba(168, 216, 255, 0.15);
+      }
+
+      .field input::placeholder {
+        color: #1e3a5f;
+        text-shadow: none;
+      }
+
+      /* ── Message Box ── */
+      #message {
+        display: none;
+        font-size: 0.85rem;
+        padding: 12px 16px;
+        border-radius: 10px;
+        margin-bottom: 18px;
+        text-align: center;
+        width: 100%;
+      }
+
+      #message.error {
+        display: block;
+        background: rgba(239, 68, 68, 0.08);
+        border: 1px solid rgba(239, 68, 68, 0.4);
+        color: #f87171;
+        text-shadow: 0 0 8px rgba(248, 113, 113, 0.5);
+      }
+
+      #message.success {
+        display: block;
+        background: rgba(168, 216, 255, 0.06);
+        border: 1px solid rgba(168, 216, 255, 0.4);
+        color: #a8d8ff;
+        text-shadow: 0 0 8px rgba(168, 216, 255, 0.5);
+      }
+
+      /* ── Button Row ── */
+      .btn-row {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        width: 100%;
+      }
+      
+      /* ── Option Row ── */
+      .options {
+        width: 100%;
+        max-width: 380px;
+        display: flex;
+        justify-content: space-between;
+        color: #ffffff;
+        align-items: center;
+        margin: 6px 0 20px;
+        font-size: 0.85rem;
+      }
+        .options a,
+        .options a:visited {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+      /* ── Submit Button ── */
+      .btn {
+        width: 75%;
+        justify-content: center;
+        padding: 13px;
+        background: linear-gradient(135deg, #124988, #8038fd);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        /* border-radius: 10px; */
+        font-size: 0.95rem;
+        font-weight: 700;
+        cursor: pointer;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 16px rgba(77, 159, 255, 0.3);
+        transition: box-shadow 0.2s, transform 0.15s;
+      }
+
+      .btn:hover {
+        box-shadow: 0 0 24px rgba(255, 255, 255, 0.25),
+                    0 0 40px rgba(2, 5, 8, 0.4);
+        transform: translateY(-1px);
+      }
+
+      .btn:disabled {
+        background: #1e293b;
+        color: #475569;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+        text-shadow: none;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ── Divider ── */
+      .divider {
+        text-align: center;
+        margin-top: 24px;
+        font-size: 0.85rem;
+        color: #a8d8ff;
+        text-shadow: 0 0 6px rgba(168, 216, 255, 0.4);
+      }
+
+      .divider a {
+        color: #ffffff;
+        font-weight: 600;
+        text-decoration: none;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      }
+
+      .divider a:hover {
+        text-decoration: underline;
+      }
+
+      h1 {
+        /* background: #0a1628; */
+        border: 3px solid rgba(255, 255, 255, 0.85);
+        box-shadow: 0 0 16px rgba(255, 255, 255, 0.2),
+                    0 0 40px rgba(168, 216, 255, 0.08);
+        padding: 10px 10px;
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <nav>
+      <a href="/" class="logo">HEALER</a>
+      <a href="/register" class="nav-right">New here? <span>Register</span></a>
+    </nav>
+
+    <!-- Page -->
+    <div class="page">
+      <div class="card">
+
+        <!-- Header -->
+        <div class="card-header">
+          <div class="icon">🌱</div>
+          <h1>Welcome Back</h1>
+          <p>Let's continue your journey!</p>
+        </div>
+
+        <!-- Message -->
+        <div id="message"></div>
+
+        <!-- Form -->
+        <form id="login-form" method="POST" action="/login">
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="Enter your password"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+
+          <div class="options">
+            <label class="remember">
+              <input type="checkbox" name="rememberMe" />
+              Remember me
+            </label>
+
+            <a href="/forgot-password">Forgot password?</a>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" type="submit" id="submit-btn">Login</button>
+          </div>
+
+        </form>
+
+        <!-- Register Link -->
+        <div class="divider">
+          Don’t have an account? <a href="/register">Create one here</a>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="/js/login.js"></script>
+  </body>
+</html>
